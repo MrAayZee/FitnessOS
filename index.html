@@ -29,8 +29,90 @@
         </section>
 
         <section class="view" data-view="exercises" aria-labelledby="tab-exercises" hidden>
-          <h2>Exercises</h2>
-          <p>Exercise library layout placeholder.</p>
+          <div class="exercise-header">
+            <h2>Exercises</h2>
+            <button id="addExerciseBtn" class="btn btn-primary" type="button">Add Exercise</button>
+          </div>
+
+          <p id="exerciseEmptyState" class="empty-state" hidden>No exercises yet</p>
+
+          <ul id="exerciseList" class="exercise-list" aria-live="polite"></ul>
+
+          <form id="exerciseForm" class="exercise-form" autocomplete="off" novalidate hidden>
+            <h3 id="exerciseFormTitle">Add Exercise</h3>
+
+            <label class="field-label" for="exerciseName">Name</label>
+            <input id="exerciseName" name="name" type="text" required placeholder="e.g., Push-Up" />
+
+            <label class="field-label" for="exercisePrimaryMuscle">Primary muscle</label>
+            <select id="exercisePrimaryMuscle" name="primaryMuscle" required>
+              <option value="">Select primary muscle</option>
+              <option value="Chest">Chest</option>
+              <option value="Back">Back</option>
+              <option value="Shoulders">Shoulders</option>
+              <option value="Biceps">Biceps</option>
+              <option value="Triceps">Triceps</option>
+              <option value="Quads">Quads</option>
+              <option value="Hamstrings">Hamstrings</option>
+              <option value="Glutes">Glutes</option>
+              <option value="Core">Core</option>
+              <option value="Calves">Calves</option>
+            </select>
+
+            <label class="field-label" for="exerciseSecondaryMuscles">Secondary muscles</label>
+            <select id="exerciseSecondaryMuscles" name="secondaryMuscles" multiple>
+              <option value="Chest">Chest</option>
+              <option value="Back">Back</option>
+              <option value="Shoulders">Shoulders</option>
+              <option value="Biceps">Biceps</option>
+              <option value="Triceps">Triceps</option>
+              <option value="Quads">Quads</option>
+              <option value="Hamstrings">Hamstrings</option>
+              <option value="Glutes">Glutes</option>
+              <option value="Core">Core</option>
+              <option value="Calves">Calves</option>
+            </select>
+
+            <label class="field-label" for="exerciseEquipment">Equipment</label>
+            <select id="exerciseEquipment" name="equipment" multiple>
+              <option value="Bodyweight">Bodyweight</option>
+              <option value="Dumbbell">Dumbbell</option>
+              <option value="Barbell">Barbell</option>
+              <option value="Kettlebell">Kettlebell</option>
+              <option value="Cable">Cable</option>
+              <option value="Resistance Band">Resistance Band</option>
+              <option value="Machine">Machine</option>
+              <option value="Bench">Bench</option>
+              <option value="Pull-Up Bar">Pull-Up Bar</option>
+            </select>
+
+            <label class="field-label" for="exerciseNotes">Notes</label>
+            <textarea id="exerciseNotes" name="notes" rows="3" placeholder="Optional coaching notes"></textarea>
+
+            <label class="field-label" for="exerciseBreathing">Breathing instructions</label>
+            <textarea id="exerciseBreathing" name="breathing" rows="2" placeholder="Optional breathing cues"></textarea>
+
+            <label class="field-label" for="exerciseVideoUrl">Video guide URL</label>
+            <input id="exerciseVideoUrl" name="videoUrl" type="text" placeholder="https://example.com/video" />
+
+            <div class="field-row">
+              <div>
+                <label class="field-label" for="exerciseMinReps">Min reps</label>
+                <input id="exerciseMinReps" name="minReps" type="number" min="0" placeholder="0" />
+              </div>
+              <div>
+                <label class="field-label" for="exerciseMaxReps">Max reps</label>
+                <input id="exerciseMaxReps" name="maxReps" type="number" min="0" placeholder="0" />
+              </div>
+            </div>
+
+            <p id="exerciseFormError" class="form-error" hidden></p>
+
+            <div class="form-actions">
+              <button id="exerciseCancelBtn" class="btn" type="button">Cancel</button>
+              <button id="exerciseSaveBtn" class="btn btn-primary" type="submit">Save Exercise</button>
+            </div>
+          </form>
         </section>
 
         <section class="view" data-view="settings" aria-labelledby="tab-settings" hidden>
@@ -60,5 +142,6 @@
 
     <script src="app.js"></script>
     <script src="storage.js"></script>
+    <script src="exercises.js"></script>
   </body>
 </html>
