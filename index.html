@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>FitnessOS</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="appShell">
+      <header class="top-bar">
+        <h1>FitnessOS</h1>
+      </header>
+
+      <main class="view-stack" id="viewStack" aria-live="polite">
+        <section class="view is-active" data-view="dashboard" aria-labelledby="tab-dashboard">
+          <h2>Dashboard</h2>
+          <p>Overview and quick stats layout placeholder.</p>
+        </section>
+
+        <section class="view" data-view="workout" aria-labelledby="tab-workout" hidden>
+          <h2>Workout</h2>
+          <p>Workout session layout placeholder.</p>
+        </section>
+
+        <section class="view" data-view="training" aria-labelledby="tab-training" hidden>
+          <h2>Training</h2>
+          <p>Training plan layout placeholder.</p>
+        </section>
+
+        <section class="view" data-view="exercises" aria-labelledby="tab-exercises" hidden>
+          <h2>Exercises</h2>
+          <p>Exercise library layout placeholder.</p>
+        </section>
+
+        <section class="view" data-view="settings" aria-labelledby="tab-settings" hidden>
+          <h2>Settings</h2>
+          <p>Settings layout placeholder.</p>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Primary">
+        <button id="tab-dashboard" class="tab is-active" type="button" data-tab="dashboard" aria-controls="viewStack" aria-current="page">
+          Dashboard
+        </button>
+        <button id="tab-workout" class="tab" type="button" data-tab="workout" aria-controls="viewStack">
+          Workout
+        </button>
+        <button id="tab-training" class="tab" type="button" data-tab="training" aria-controls="viewStack">
+          Training
+        </button>
+        <button id="tab-exercises" class="tab" type="button" data-tab="exercises" aria-controls="viewStack">
+          Exercises
+        </button>
+        <button id="tab-settings" class="tab" type="button" data-tab="settings" aria-controls="viewStack">
+          Settings
+        </button>
+      </nav>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

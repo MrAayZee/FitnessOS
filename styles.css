@@ -1,0 +1,124 @@
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --text: #16181d;
+  --muted: #6f7480;
+  --line: #dce0e7;
+  --accent: #0f6cde;
+  --radius: 16px;
+  --nav-height: 72px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --app-height: 1vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Segoe UI", "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(180deg, #fcfdff 0%, #f5f7fb 100%);
+  color: var(--text);
+}
+
+body {
+  overflow: hidden;
+}
+
+.app-shell {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  height: calc(var(--app-height) * 100);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: transparent;
+}
+
+.top-bar {
+  padding: calc(12px + var(--safe-top)) 20px 12px;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.top-bar h1 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.view-stack {
+  overflow: auto;
+  padding: 16px;
+  padding-bottom: 20px;
+}
+
+.view {
+  min-height: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(18, 23, 33, 0.05);
+}
+
+.view h2 {
+  margin: 0 0 10px;
+  font-size: 1.15rem;
+}
+
+.view p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.bottom-nav {
+  height: calc(var(--nav-height) + var(--safe-bottom));
+  padding: 8px 8px calc(8px + var(--safe-bottom));
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.tab {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 8px 4px;
+  cursor: pointer;
+}
+
+.tab.is-active {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 30%, #ffffff);
+  background: color-mix(in srgb, var(--accent) 12%, #ffffff);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .app-shell {
+    max-width: 430px;
+    margin: 0 auto;
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    background: color-mix(in srgb, #ffffff 85%, #f4f6fb);
+  }
+}
