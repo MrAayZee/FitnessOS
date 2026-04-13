@@ -1,4 +1,4 @@
-(function setupFitnessDB() {
+(() => {
   const DB_NAME = "FitnessOSDB";
   const DB_VERSION = 1;
   const STORE_NAMES = [
@@ -12,14 +12,14 @@
 
   let dbPromise = null;
 
-  function requestToPromise(request) {
+  const requestToPromise = (request) => {
     return new Promise((resolve, reject) => {
       request.onsuccess = () => resolve(request.result);
       request.onerror = () => reject(request.error || new Error("IndexedDB request failed"));
     });
-  }
+  };
 
-  async function initDB() {
+  const initDB = async () => {
     if (dbPromise) {
       return dbPromise;
     }
@@ -42,47 +42,47 @@
     });
 
     return dbPromise;
-  }
+  };
 
-  async function getStore(storeName, mode = "readonly") {
+  const getStore = async (storeName, mode = "readonly") => {
     const db = await initDB();
     if (!STORE_NAMES.includes(storeName)) {
       throw new Error(`Unknown store: ${storeName}`);
     }
 
     return db.transaction(storeName, mode).objectStore(storeName);
-  }
+  };
 
-  async function addItem(store, data) {
+  const addItem = async (store, data) => {
     const objectStore = await getStore(store, "readwrite");
     const id = await requestToPromise(objectStore.add(data));
     return id;
-  }
+  };
 
-  async function getAllItems(store) {
+  const getAllItems = async (store) => {
     const objectStore = await getStore(store, "readonly");
     return requestToPromise(objectStore.getAll());
-  }
+  };
 
-  async function getItem(store, id) {
+  const getItem = async (store, id) => {
     const objectStore = await getStore(store, "readonly");
     return requestToPromise(objectStore.get(id));
-  }
+  };
 
-  async function updateItem(store, id, data) {
+  const updateItem = async (store, id, data) => {
     const objectStore = await getStore(store, "readwrite");
     const payload = { ...data, id };
     await requestToPromise(objectStore.put(payload));
     return payload;
-  }
+  };
 
-  async function deleteItem(store, id) {
+  const deleteItem = async (store, id) => {
     const objectStore = await getStore(store, "readwrite");
     await requestToPromise(objectStore.delete(id));
     return true;
-  }
+  };
 
-  async function runConsoleTests() {
+  const runConsoleTests = async () => {
     await initDB();
 
     console.log("[IndexedDB Test] DB initialized");
@@ -108,7 +108,7 @@
     const after = await getAllItems("exercises");
     console.log("[IndexedDB Test] Exercises after add/update:", after.length);
     console.log("[IndexedDB Test] Persistence check: if this count grows after refresh, data persisted.");
-  }
+  };
 
   window.FitnessDB = {
     initDB,
